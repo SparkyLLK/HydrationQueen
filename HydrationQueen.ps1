@@ -4,15 +4,16 @@
 # 2 - From Address
 # 3 - To Addresse(s)
 # Variables & Parameters
+Param( $eserv, $efrom, $eto)
 
 #current time
 $time = (Get-Date).ToString('HH:mm')
 
 #email stuff
-$efrom = $args[1]
-$eto = @($args[2])
+#$eserv = $args[0]
+#$efrom = $args[1]
+#$eto = $args[2]
 $esub = "THIS HAS NOT GONE TO PLAN"
-$eserv = $args[0]
 $ebod = "THIS HAS NOT GONE TO PLAN"
 
 # Water Quotes
@@ -130,4 +131,6 @@ elseif ($time -like '21*') {
 $ebod += " - xoxo HQ"
 if ($esub -inotmatch "THIS HAS NOT GONE TO PLAN"){
 Send-MailMessage -SmtpServer $eserv -From $efrom -To $eto -Subject $esub -Body $ebod
+} else {
+Write-Host "It's not the right time"
 }
